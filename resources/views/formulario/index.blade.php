@@ -343,13 +343,13 @@
                                     <label class="form-check-label" for="virtual">Virtual</label>
                                 </div>
 
-                                <div class="form-check ">
+                                {{-- <div class="form-check ">
                                     <input
                                         class="form-check-input form-control @error('modalidad') is-invalid @enderror"
                                         name="modalidad" type="radio" id="presencial" value="Presencial"
                                         {{ old('modalidad') == 'Presencial' ? 'checked' : '' }} disabled>
                                     <label class="form-check-label" for="presencial">Presencial</label>
-                                </div>
+                                </div> --}}
 
                             </div>
                             @error('modalidad')
