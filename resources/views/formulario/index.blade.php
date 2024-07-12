@@ -200,10 +200,50 @@
 
     </div>
 
+
+
     <div class="container">
         <br>
+        <form id="logout-form" action="{{ route('formulario.logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
 
-        <form action="" method="POST" class="was-validated" enctype="multipart/form-data">
+        @if (session('scssmsg'))
+            <script>
+                Swal.fire({
+                    title: "Correcto!",
+                    text: ` {{ session('scssmsg') }}`,
+                    icon: "success",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    showCancelButton: false,
+                    confirmButtonText: "OK",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('logout-form').submit();
+                    }
+                });
+            </script>
+        @endif
+
+        @if (session('errormsg'))
+            <script>
+                Swal.fire({
+                    title: "Error!",
+                    text: ` {{ session('errormsg') }}`,
+                    icon: "warning",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false
+                });
+            </script>
+        @endif
+
+
+
+        <form action="{{ route('formulario.store') }}" method="POST" class="was-validated"
+            enctype="multipart/form-data">
             @csrf
 
             <div class="card">
@@ -409,13 +449,12 @@
                                                     class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
                                                     name="discapacidad[]" type="checkbox" id="Otro"
                                                     value="Otro" @if (in_array('Otro', old('discapacidad', []))) checked @endif>
-                                                    <label class="form-check-label" for="Otro">Otro</label>
+                                                <label class="form-check-label" for="Otro">Otro</label>
                                             </div>
                                         </div>
                                         <input id="txtOtro" type="text"
                                             class="form-control @error('txtOtro') is-invalid @enderror"
-                                            name="txtOtro" value="{{ old('txtOtro') }}" autofocus aria-label="Otro"
-                                            >
+                                            name="txtOtro" value="{{ old('txtOtro') }}" autofocus aria-label="Otro">
                                     </div>
 
 
@@ -652,25 +691,26 @@
         }
     </script>
 
-<script>
+    <script>
+        $(document).ready(function() {
 
-    $(document).ready(function() {
-        $('#modalVideo').modal('show')
+            @if (!session('scssmsg'))
+                $('#modalVideo').modal('show')
 
-        var url = $("#videoRegistro").attr('src');
-        $("#videoRegistro").attr('src', '');
+                var url = $("#videoRegistro").attr('src');
+                $("#videoRegistro").attr('src', '');
 
-        $("#modalVideo").on('shown.bs.modal', function() {
-            $("#videoRegistro").attr('src', url);
-        });
+                $("#modalVideo").on('shown.bs.modal', function() {
+                    $("#videoRegistro").attr('src', url);
+                });
 
-        $("#modalVideo").on('hide.bs.modal', function() {
-            $("#videoRegistro").attr('src', '');
-        });
+                $("#modalVideo").on('hide.bs.modal', function() {
+                    $("#videoRegistro").attr('src', '');
+                });
+            @endif
 
-
-    })
-</script>
+        })
+    </script>
 
 
 </body>

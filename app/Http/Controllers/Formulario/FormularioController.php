@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Formulario;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class FormularioController extends Controller
 {
@@ -30,6 +31,20 @@ class FormularioController extends Controller
     public function store(Request $request)
     {
         //
+        $idRegistro = 'OPB-CON-DIS-0001';
+        return Redirect::back()->with('scssmsg', 'Se ha guardado correctamente el registro. Su número de Folio es: ' . $idRegistro);
+    }
+
+    public function logout(Request $request)
+    {
+
+        //Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+
     }
 
     /**
