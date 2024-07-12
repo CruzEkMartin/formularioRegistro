@@ -3,6 +3,7 @@
 use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Formulario\FormularioController;
+use App\Livewire\Formulario\PrincipalComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,6 @@ use App\Http\Controllers\Formulario\FormularioController;
 // });
 
 
-Route::get('/', [FormularioController::class, 'index'])->name('formulario.index');
+// Route::get('/', [FormularioController::class, 'index'])->name('formulario.index');
+
+Route::get('/', PrincipalComponent::class)->name('formulario.principal');
