@@ -489,24 +489,8 @@
                             </div>
                         </div>
 
-
+                        <!--apartado de propuestas-->
                         <livewire:formulario.propuesta-component>
-
-                            <!--Formulario de consulta-->
-                            <div class="row">
-
-                                <div class="col-md-4">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text"
-                                            id="lblConsulta">{{ __('Formulario de Consulta') }}</span>
-                                        <input id="consulta" type="text"
-                                            class="form-control @error('consulta') is-invalid @enderror"
-                                            name="consulta" value="Formulario de consulta" required disabled autofocus
-                                            aria-label="Consulta" aria-describedby="lblConsulta">
-                                    </div>
-
-                                </div>
-                            </div>
 
 
                             <!--Subir aviso de privacidad documento-->
