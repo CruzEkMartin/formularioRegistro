@@ -1,6 +1,9 @@
 <?php
 
+use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Formulario\FormularioController;
+use App\Livewire\Formulario\PrincipalComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/', [FormularioController::class, 'index'])->name('formulario.index');
+Route::post('/formulario/store', [FormularioController::class, 'store'])->name('formulario.store');
+Route::post('/formulario/logout', [FormularioController::class, 'logout'])->name('formulario.logout');
+
+
+//Route::get('/', PrincipalComponent::class)->name('formulario.principal');
