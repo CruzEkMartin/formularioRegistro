@@ -21,6 +21,6 @@ use App\Livewire\Formulario\PrincipalComponent;
 // });
 
 
-// Route::get('/', [FormularioController::class, 'index'])->name('formulario.index');
+ Route::get('/', [FormularioController::class, 'index'])->name('formulario.index');
 
-Route::get('/', PrincipalComponent::class)->name('formulario.principal');
+//Route::get('/', PrincipalComponent::class)->name('formulario.principal');

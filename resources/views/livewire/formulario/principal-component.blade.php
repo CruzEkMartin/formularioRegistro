@@ -163,19 +163,36 @@
                     <div class="col-md-12">
                         <div class="input-group mb-3 align-items-center">
                             <span class="input-group-text" id="lblDiscapacidad">{{ __('* Discapacidades') }}</span>
+
+                            <div class="form-check ">
+                                <input
+                                    class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                    wire:model.live="discapacidad[]" type="checkbox" id="motrices" value="Motrices"
+                                    @if (in_array('Motrices', old('discapacidad', []))) checked @endif >
+                                <label class="form-check-label" for="motrices">Motrices</label>
+                            </div>
+
                             <div class="form-check ">
                                 <input class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                    name="discapacidad[]" type="checkbox" id="opcion_1" value="opcion_1"
-                                    @if (in_array('opcion_1', old('discapacidad', []))) checked @endif>
-                                <label class="form-check-label" for="opcion_1">Opcion 1</label>
+                                wire:model.live="discapacidad[]" type="checkbox" id="aprendizaje" value="Aprendizaje y Comportamiento"
+                                    @if (in_array('Aprendizaje y Comportamiento', old('discapacidad', []))) checked @endif >
+                                <label class="form-check-label" for="aprendizaje">Aprendizaje y Comportamiento</label>
                             </div>
 
                             <div class="form-check ">
                                 <input
                                     class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                    name="discapacidad[]" type="checkbox" id="opcion_2" value="opcion_2"
-                                    @if (in_array('opcion_2', old('discapacidad', []))) checked @endif>
-                                <label class="form-check-label" for="opcion_2">Opcion 2</label>
+                                    wire:model.live="discapacidad[]" type="checkbox" id="sensorial" value="Sensoriales y de Comunicación"
+                                    @if (in_array('Sensoriales y de Comunicación', old('discapacidad', []))) checked @endif >
+                                <label class="form-check-label" for="sensorial">Sensoriales y de Comunicación</label>
+                            </div>
+
+                            <div class="form-check ">
+                                <input
+                                    class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                    wire:model.live="discapacidad[]" type="checkbox" id="edad" value="Edad Avanzada"
+                                    @if (in_array('edad', old('discapacidad', []))) checked @endif >
+                                <label class="form-check-label" for="edad">Edad Avanzada</label>
                             </div>
 
                             @error('discapacidad')
@@ -189,7 +206,7 @@
 
 
                 <!--Accesibilidades-->
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-12">
                         <div class="input-group mb-3 align-items-center">
                             <span class="input-group-text"
@@ -217,7 +234,7 @@
                             @enderror
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
 

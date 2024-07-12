@@ -272,59 +272,8 @@
 
                     </div>
 
-                    <!--fecha nacimiento, municipio, modalidad-->
+                    <!-- municipio, modalidad-->
                     <div class="row">
-
-                        <!--fecha nacimiento-->
-                        <div class="col-md-4">
-                            {{-- <div class="input-group mb-3">
-                            <select id="year" name="yyyy" onchange="change_year(this)"
-                                class="form-control @error('year') is-invalid @enderror" required>
-                                <option value="" selected>Año</option>
-                            </select>
-                            @error('year')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                            <select id="month" name="month" onchange="change_month(this)"
-                                class="form-control @error('month') is-invalid @enderror" required>
-                                <option value="" selected>Mes</option>
-                            </select>
-                            @error('month')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                            <select id="day" name="day"
-                                class="form-control @error('day') is-invalid @enderror" disabled required>
-                                <option value="" selected>Día</option>
-                            </select>
-                            @error('day')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror --}}
-
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"
-                                    id="lblFechaNacimiento">{{ __('* Fecha de Nacimiento') }}</span>
-                                <input id="fecha_nacimiento" type="date"
-                                    class="form-control @error('fecha_nacimiento') is-invalid @enderror"
-                                    name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" required autofocus
-                                    aria-label="Fecha Nacimiento" aria-describedby="lblFechaNacimiento">
-
-                                @error('fecha_nacimiento')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                            </div>
-
-                        </div>
 
                         <!--municipio-->
                         <div class="col-md-4">
@@ -370,146 +319,130 @@
                     </div>
 
 
-                    <!--Tipo de representacion-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <livewire:formulario.tipo-representacion-component />
+
+                    <!--fecha nacimiento, carta de autorizacion-->
+                    <livewire:formulario.fecha-nacimiento-component>
+
+
+                        <!--Tipo de representacion-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <livewire:formulario.tipo-representacion-component />
+                            </div>
+
                         </div>
 
-                    </div>
+
+                        <!--Discapacidades-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group mb-3 align-items-center">
+                                    <span class="input-group-text"
+                                        id="lblDiscapacidad">{{ __('* Discapacidades') }}</span>
+                                    <div class="form-check ">
+                                        <input
+                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="checkbox" id="Motrices" value="Motrices"
+                                            @if (in_array('Motrices', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="Motrices">Motrices</label>
+                                    </div>
+
+                                    <div class="form-check ">
+                                        <input
+                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="checkbox" id="aprendizaje"
+                                            value="Aprendizaje y Comportamiento"
+                                            @if (in_array('Aprendizaje y Comportamiento', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="aprendizaje">Aprendizaje y
+                                            Comportamiento</label>
+                                    </div>
+
+                                    <div class="form-check ">
+                                        <input
+                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="checkbox" id="sensorial"
+                                            value="Sensoriales y de Comunicación"
+                                            @if (in_array('Sensoriales y de Comunicación', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="sensorial">Sensoriales y de
+                                            Comunicación</label>
+                                    </div>
+
+                                    <div class="form-check ">
+                                        <input
+                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="checkbox" id="edad"
+                                            value="Edad Avanzada" @if (in_array('edad', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="edad">Edad Avanzada</label>
+                                    </div>
 
 
-                    <!--Discapacidades-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="input-group mb-3 align-items-center">
-                                <span class="input-group-text"
-                                    id="lblDiscapacidad">{{ __('* Discapacidades') }}</span>
-                                <div class="form-check ">
-                                    <input
-                                        class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                        name="discapacidad[]" type="checkbox" id="opcion_1" value="opcion_1"
-                                        @if (in_array('opcion_1', old('discapacidad', []))) checked @endif>
-                                    <label class="form-check-label" for="opcion_1">Opcion 1</label>
+                                    @error('discapacidad')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="form-check ">
-                                    <input
-                                        class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                        name="discapacidad[]" type="checkbox" id="opcion_2" value="opcion_2"
-                                        @if (in_array('opcion_2', old('discapacidad', []))) checked @endif>
-                                    <label class="form-check-label" for="opcion_2">Opcion 2</label>
+
+                        <livewire:formulario.propuesta-component>
+
+                            <!--Formulario de consulta-->
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"
+                                            id="lblConsulta">{{ __('* Formulario de Consulta') }}</span>
+                                        <input id="consulta" type="text"
+                                            class="form-control @error('consulta') is-invalid @enderror"
+                                            name="consulta" value="Formulario de consulta" required disabled autofocus
+                                            aria-label="Consulta" aria-describedby="lblConsulta">
+                                    </div>
+
                                 </div>
+                            </div>
 
-                                @error('discapacidad')
+
+                            <!--Subir aviso de privacidad documento-->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3 align-items-start">
+                                        <span class="input-group-text"
+                                            id="lblAviso">{{ __('Aviso de Privacidad') }}</span>
+                                        <label class="form-check-label col-md-7 ml-2" for="lblAviso">Manifiesto que he
+                                            leído en su totalidad el Aviso de Privacidad Integral de la Consulta
+                                            pública,
+                                            abierta y regular, estrecha, libre e informada a personas con discapacidad
+                                            en el
+                                            Municipio de Othón P. Blanco en materia de sus derechos, transporte
+                                            inclusivo y
+                                            turismo inclusivo, y entiendo plenamente su alcance como contenido, por lo
+                                            que
+                                            otorgo mi consentimiento para que el Municipio de Othón P. Blanco trate mis
+                                            datos personales de acuerdo al Aviso de Privacidad.</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--check aviso de privacidad-->
+                            <div class="row">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="chkAviso" type="checkbox" value="1"
+                                        {{ old('chkAviso') == '1' ? 'checked' : '' }} id="chkAviso" required>
+                                    <label class="form-check-label" for="chkAviso">
+                                        Confirmo que he Leído y Acepto el Aviso de Privacidad.
+                                    </label>
+                                </div>
+                                @error('chkAviso')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                                <br>
                             </div>
-                        </div>
-                    </div>
-
-
-                    <!--Accesibilidades-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="input-group mb-3 align-items-center">
-                                <span class="input-group-text"
-                                    id="lblAccesibilidad">{{ __('* Medidas de Accesibilidad') }}</span>
-                                <div class="form-check ">
-                                    <input
-                                        class="form-check-input form-control @error('accesibilidad') is-invalid @enderror"
-                                        name="accesibilidad[]" type="checkbox" id="opcion_11" value="opcion_1"
-                                        @if (in_array('opcion_1', old('accesibilidad', []))) checked @endif>
-                                    <label class="form-check-label" for="opcion_11">Opcion 1</label>
-                                </div>
-
-                                <div class="form-check ">
-                                    <input
-                                        class="form-check-input form-control @error('accesibilidad') is-invalid @enderror"
-                                        name="accesibilidad[]" type="checkbox" id="opcion_22" value="opcion_2"
-                                        @if (in_array('opcion_2', old('accesibilidad', []))) checked @endif>
-                                    <label class="form-check-label" for="opcion_22">Opcion 2</label>
-                                </div>
-
-                                @error('accesibilidad')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <!--Propuesta de iniciativa documento-->
-                    <div class="row">
-                        <div class="col-12">
-                            <livewire:formulario.subir-archivo-iniciativa-component />
-                        </div>
-                    </div>
-
-                    <!--Propuesta de iniciativa video-->
-                    <div class="row">
-                        <div class="col-12">
-                            <livewire:formulario.subir-video-iniciativa-component />
-                        </div>
-                    </div>
-
-
-                    <!--Formulario de consulta-->
-                    <div class="row">
-
-                        <div class="col-md-4">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"
-                                    id="lblConsulta">{{ __('* Formulario de Consulta') }}</span>
-                                <input id="consulta" type="text"
-                                    class="form-control @error('consulta') is-invalid @enderror" name="consulta"
-                                    value="Formulario de consulta" required disabled autofocus aria-label="Consulta"
-                                    aria-describedby="lblConsulta">
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <!--Subir carta de autorizacion documento-->
-                    <div class="row">
-                        <div class="col-12">
-                            <livewire:formulario.subir-carta-autorizacion-component />
-                        </div>
-                    </div>
-
-
-                    <!--Subir aviso de privacidad documento-->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="input-group mb-3 align-items-start">
-                                <span class="input-group-text" id="lblAviso">{{ __('Aviso de Privacidad') }}</span>
-                                <label class="form-check-label col-md-7 ml-2" for="lblAviso">Manifiesto que he leído en su totalidad el Aviso de Privacidad Integral de la Consulta pública, abierta y regular, estrecha, libre e informada a personas con discapacidad en el Municipio de Othón P. Blanco en materia de sus derechos, transporte inclusivo y turismo inclusivo, y entiendo plenamente su alcance como contenido, por lo que otorgo mi consentimiento para que el Municipio de Othón P. Blanco trate mis datos personales de acuerdo al Aviso de Privacidad.</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-check">
-                            <input class="form-check-input" name="chkAviso" type="checkbox" value="1"
-                                {{ old('chkAviso') == '1' ? 'checked' : '' }} id="chkAviso" required>
-                            <label class="form-check-label" for="chkAviso">
-                                Confirmo que he Leído y Acepto el Aviso de Privacidad.
-                            </label>
-                        </div>
-                        @error('chkAviso')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-
-                        <br>
-                    </div>
 
 
                 </div> {{-- card-body --}}
