@@ -198,6 +198,9 @@
         <div class="row linea shadow-sm">
         </div>
 
+    </div>
+
+    <div class="container">
         <br>
 
         <form action="" method="POST" class="was-validated" enctype="multipart/form-data">
@@ -218,7 +221,7 @@
                         <!--nombre-->
                         <div class="col-md-4">
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="lblNombre">{{ __('* Nombre(s)') }}</span>
+                                <span class="input-group-text" id="lblNombre">{{ __('Nombre(s)') }}</span>
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="name"
                                     value="{{ old('name') }}" required autocomplete="name" autofocus
@@ -236,7 +239,7 @@
                         <div class="col-md-4">
                             <div class="input-group mb-3">
                                 <span class="input-group-text"
-                                    id="lblApellidoPaterno">{{ __('* Apellido Paterno') }}</span>
+                                    id="lblApellidoPaterno">{{ __('Apellido Paterno') }}</span>
                                 <input id="apellido_paterno" type="text"
                                     class="form-control @error('apellido_paterno') is-invalid @enderror"
                                     name="apellido_paterno" value="{{ old('apellido_paterno') }}" required
@@ -255,7 +258,7 @@
                         <div class="col-md-4">
                             <div class="input-group mb-3">
                                 <span class="input-group-text"
-                                    id="lblApellidoMaterno">{{ __('* Apellido Materno') }}</span>
+                                    id="lblApellidoMaterno">{{ __('Apellido Materno') }}</span>
                                 <input id="apellido_materno" type="text"
                                     class="form-control @error('apellido_materno') is-invalid @enderror"
                                     name="apellido_materno" value="{{ old('apellido_materno') }}" required
@@ -276,9 +279,9 @@
                     <div class="row">
 
                         <!--municipio-->
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="lblMunicipio">{{ __('* Municipio') }}</span>
+                                <span class="input-group-text" id="lblMunicipio">{{ __('Municipio') }}</span>
                                 <input id="municipio" type="text"
                                     class="form-control @error('municipio') is-invalid @enderror" name="municipio"
                                     value="Othón P. Blanco" required disabled autofocus aria-label="Municipio"
@@ -289,9 +292,9 @@
 
 
                         <!--modalidad-->
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="input-group mb-3 align-items-center">
-                                <span class="input-group-text" id="lblModalidad">{{ __('* Modalidad') }}</span>
+                                <span class="input-group-text" id="lblModalidad">{{ __('Modalidad') }}</span>
                                 <div class="form-check ">
                                     <input
                                         class=" form-check-input form-control @error('modalidad') is-invalid @enderror"
@@ -325,12 +328,7 @@
 
 
                         <!--Tipo de representacion-->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <livewire:formulario.tipo-representacion-component />
-                            </div>
-
-                        </div>
+                        <livewire:formulario.tipo-representacion-component />
 
 
                         <!--Discapacidades-->
@@ -338,43 +336,110 @@
                             <div class="col-md-12">
                                 <div class="input-group mb-3 align-items-center">
                                     <span class="input-group-text"
-                                        id="lblDiscapacidad">{{ __('* Discapacidades') }}</span>
-                                    <div class="form-check ">
+                                        id="lblDiscapacidad">{{ __('Discapacidades') }}</span>
+                                    <div class="form-check pl-2 mb-2">
                                         <input
                                             class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                            name="discapacidad[]" type="checkbox" id="Motrices" value="Motrices"
-                                            @if (in_array('Motrices', old('discapacidad', []))) checked @endif>
-                                        <label class="form-check-label" for="Motrices">Motrices</label>
+                                            name="discapacidad[]" type="checkbox" id="Fisica" value="Fisica"
+                                            @if (in_array('Fisica', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="Fisica">Fisica</label>
                                     </div>
 
-                                    <div class="form-check ">
+                                    <div class="form-check pl-2 mb-2">
                                         <input
                                             class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                            name="discapacidad[]" type="checkbox" id="aprendizaje"
-                                            value="Aprendizaje y Comportamiento"
-                                            @if (in_array('Aprendizaje y Comportamiento', old('discapacidad', []))) checked @endif>
-                                        <label class="form-check-label" for="aprendizaje">Aprendizaje y
-                                            Comportamiento</label>
+                                            name="discapacidad[]" type="checkbox" id="Intelectual"
+                                            value="Intelectual" @if (in_array('Intelectual', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="Intelectual">Intelectual</label>
                                     </div>
 
-                                    <div class="form-check ">
+
+                                    <div class="form-check pl-2 mb-2">
                                         <input
                                             class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                            name="discapacidad[]" type="checkbox" id="sensorial"
-                                            value="Sensoriales y de Comunicación"
-                                            @if (in_array('Sensoriales y de Comunicación', old('discapacidad', []))) checked @endif>
-                                        <label class="form-check-label" for="sensorial">Sensoriales y de
-                                            Comunicación</label>
+                                            name="discapacidad[]" type="checkbox" id="Mental" value="Mental"
+                                            @if (in_array('Mental', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="Mental">Mental</label>
                                     </div>
 
-                                    <div class="form-check ">
+                                    <div class="form-check pl-2 mb-2">
                                         <input
                                             class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                            name="discapacidad[]" type="checkbox" id="edad"
-                                            value="Edad Avanzada" @if (in_array('edad', old('discapacidad', []))) checked @endif>
-                                        <label class="form-check-label" for="edad">Edad Avanzada</label>
+                                            name="discapacidad[]" type="checkbox" id="Psicosocial"
+                                            value="Psicosocial" @if (in_array('Psicosocial', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="Psicosocial">Psicosocial</label>
                                     </div>
 
+                                    <div class="form-check pl-2 mb-2">
+                                        <input
+                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="checkbox" id="Multiple" value="Multiple"
+                                            @if (in_array('Multiple', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="Multiple">Multiple</label>
+                                    </div>
+
+                                    <div class="form-check pl-2 mb-2">
+                                        <input
+                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="checkbox" id="Sensorial" value="Sensorial"
+                                            @if (in_array('Sensorial', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="Sensorial">Sensorial</label>
+                                    </div>
+
+                                    <div class="form-check pl-2 mb-2">
+                                        <input
+                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="checkbox" id="Auditiva" value="Auditiva"
+                                            @if (in_array('Auditiva', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="Auditiva">Auditiva</label>
+                                    </div>
+
+                                    <div class="form-check pl-2 mb-2">
+                                        <input
+                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="checkbox" id="Visual" value="Visual"
+                                            @if (in_array('Visual', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="Visual">Visual</label>
+                                    </div>
+
+                                    <div class="input-group col-md-6 ml-5 mt-2 mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <input
+                                                    class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                                    name="discapacidad[]" type="checkbox" id="Otro"
+                                                    value="Otro" @if (in_array('Otro', old('discapacidad', []))) checked @endif>
+                                                    <label class="form-check-label" for="Otro">Otro</label>
+                                            </div>
+                                        </div>
+                                        <input id="txtOtro" type="text"
+                                            class="form-control @error('txtOtro') is-invalid @enderror"
+                                            name="txtOtro" value="{{ old('txtOtro') }}" autofocus aria-label="Otro"
+                                            >
+                                    </div>
+
+
+
+                                    {{-- <div class="form-check pl-2 mb-2">
+                                        <input
+                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="checkbox" id="Otro" value="Otro"
+                                            >
+                                            <label class="form-check-label" for="Otro">Otro</label>
+                                            <input
+                                            class="form-control form-check-label @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="text" id="txtOtro" aria-describedby="Otro">
+                                    </div> --}}
+
+                                    {{--
+                                    <div class="input-group col-md-6 ml-5 mt-2 mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="Otro">Otro</span>
+                                        </div>
+                                        <input
+                                            class="form-control @error('discapacidad') is-invalid @enderror"
+                                            name="discapacidad[]" type="text" id="Otro" aria-describedby="Otro">
+                                    </div> --}}
 
                                     @error('discapacidad')
                                         <span class="invalid-feedback" role="alert">
@@ -394,7 +459,7 @@
                                 <div class="col-md-4">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"
-                                            id="lblConsulta">{{ __('* Formulario de Consulta') }}</span>
+                                            id="lblConsulta">{{ __('Formulario de Consulta') }}</span>
                                         <input id="consulta" type="text"
                                             class="form-control @error('consulta') is-invalid @enderror"
                                             name="consulta" value="Formulario de consulta" required disabled autofocus
@@ -411,7 +476,8 @@
                                     <div class="input-group mb-3 align-items-start">
                                         <span class="input-group-text"
                                             id="lblAviso">{{ __('Aviso de Privacidad') }}</span>
-                                        <label class="form-check-label col-md-7 ml-2" for="lblAviso">Manifiesto que he
+                                        <label class="form-check-label col-md-10 ml-2" for="lblAviso">Manifiesto que
+                                            he
                                             leído en su totalidad el Aviso de Privacidad Integral de la Consulta
                                             pública,
                                             abierta y regular, estrecha, libre e informada a personas con discapacidad
@@ -432,7 +498,9 @@
                                     <input class="form-check-input" name="chkAviso" type="checkbox" value="1"
                                         {{ old('chkAviso') == '1' ? 'checked' : '' }} id="chkAviso" required>
                                     <label class="form-check-label" for="chkAviso">
-                                        Confirmo que he Leído y Acepto el Aviso de Privacidad.
+                                        Confirmo que he Leído y Acepto el &nbsp;<a
+                                            href="https://www.opb.gob.mx/consulta/pdf/AVISO%20DE%20PRIVACIDAD%20INTEGRAL%20PARA%20CONSULTA%20A%20PERSONAS%20CON%20DISCAPCIDAD.pdf"
+                                            target="_blank">Aviso de Privacidad.</a>
                                     </label>
                                 </div>
                                 @error('chkAviso')
@@ -458,6 +526,25 @@
     </div> {{-- container --}}
 
 
+    <div id="modalVideo" class="modal fade">
+        <div class="modal-dialog modal-lg modal-dialog-centered justify-content-center">
+            <div class="modal-content">
+                <div class="modal-header primario">
+                    <h5 class="modal-title ">VideoTutorial Registro</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe id="videoRegistro" class="embed-responsive-item" width="853" height="480"
+                            src="https://www.youtube.com/embed/EKmf7F6wE2o?si=8jrrY-b0Ar0VHDn2?autoplay=1"
+                            title="PASOS PARA EL REGISTRO AL PROGRAMA" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -565,6 +652,25 @@
         }
     </script>
 
+<script>
+
+    $(document).ready(function() {
+        $('#modalVideo').modal('show')
+
+        var url = $("#videoRegistro").attr('src');
+        $("#videoRegistro").attr('src', '');
+
+        $("#modalVideo").on('shown.bs.modal', function() {
+            $("#videoRegistro").attr('src', url);
+        });
+
+        $("#modalVideo").on('hide.bs.modal', function() {
+            $("#videoRegistro").attr('src', '');
+        });
+
+
+    })
+</script>
 
 
 </body>

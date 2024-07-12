@@ -4,14 +4,14 @@
         <div class="col-md-4">
             <div class="input-group mb-3">
                 <span class="input-group-text"
-                    id="lblTemaPropuesta">{{ __('* Tema de Propuesta') }}</span>
+                    id="lblTemaPropuesta">{{ __('Tema de Propuesta') }}</span>
                 <select name="temaPropuesta" id="temaPropuesta"
                     class="form-control @error('temaPropuesta') is-invalid @enderror" required>
                     <option value="">Seleccionar</option>
-                    <option value="Opcion1">Opcion1</option>
-                    <option value="Opcion2">Opcion2</option>
-                    <option value="Opcion3">Opcion3</option>
-                    <option value="Opcion4">Opcion4</option>
+                    <option value="Derechos">Derechos</option>
+                    <option value="Transporte Inclusivo">Transporte Inclusivo</option>
+                    <option value="Turismo Inclusivo">Turismo Inclusivo</option>
+
                 </select>
 
                 @error('temaPropuesta')
@@ -26,7 +26,7 @@
         <div class="col-md-4">
             <div class="input-group mb-3">
                 <span class="input-group-text"
-                    id="lblTipoPropuesta">{{ __('* Propuesta por') }}</span>
+                    id="lblTipoPropuesta">{{ __('Propuesta por') }}</span>
                 <select wire:model.live='tipoPropuesta' name="tipoPropuesta" id="tipoPropuesta"
                     class="form-control @error('tipoPropuesta') is-invalid @enderror" required>
                     <option value="">Seleccionar</option>
@@ -50,7 +50,7 @@
         <div class="col-12">
             <div class="input-group align-items-start mb-3">
                 <span class="input-group-text"
-                    id="lblEscrito">{{ __('* Propuesta libre') }}</span>
+                    id="lblEscrito">{{ __('Propuesta libre') }}</span>
                 <textarea class="form-control @error('tipoPropuesta') is-invalid @enderror" name="escrito" id="escrito"
                     cols="60" rows="4" required></textarea>
                 @error('escrito')

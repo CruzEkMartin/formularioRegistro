@@ -4,7 +4,7 @@
 
     <div class="col-8 p-0">
         <div class="input-group mb-3">
-            <span class="input-group-text" id="lblArchivo">{{ __('* Propuesta de Iniciativa (JPG, PDF, Docx)') }}</span>
+            <span class="input-group-text" id="lblArchivo">{{ __('Propuesta de Iniciativa (JPG, PDF, Docx)') }}</span>
             <input wire:model.live='archivo' id="upload{{ $archivoId }}" name="archivo" type="file"
                 class="form-control @error('archivo') is-invalid @enderror"
                 accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf, image/*"
