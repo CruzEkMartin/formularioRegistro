@@ -1,9 +1,25 @@
-<div >
-    <div class="row">
+<div>
+    <div class="row mt-2">
 
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="lblCelPhone">Teléfono Celular</span>
+                <input id="telefono" type="number" maxlength="10"
+                    class="form-control @error('telefono') is-invalid @enderror" name="telefono"
+                    value="{{ old('telefono') }}"  aria-label="Teléfono Celular"
+                    aria-describedby="lblCelPhone">
 
-            <div class="col-md-4 input-group mb-3">
-                {{-- <select id="year" name="yyyy" onchange="change_year(this)"
+                @error('telefono')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
+            </div>
+        </div>
+
+        <div class="col-md-4 input-group mb-3">
+            {{-- <select id="year" name="yyyy" onchange="change_year(this)"
                                     class="form-control @error('year') is-invalid @enderror" required>
                                     <option value="" selected>Año</option>
                                 </select>
@@ -34,19 +50,19 @@
                                 @enderror --}}
 
 
-                <span class="input-group-text" id="lblFechaNacimiento">{{ __('Fecha de Nacimiento') }}</span>
-                <input wire:model.live="fechanacimiento" type="date" name="fechanacimiento"
-                    class="form-control @error('fechanacimiento') is-invalid @enderror" id="fechanacimiento"
-                    value="{{ old('fechanacimiento') }}" required autofocus aria-label="Fecha Nacimiento"
-                    aria-describedby="lblFechaNacimiento">
+            <span class="input-group-text" id="lblFechaNacimiento">{{ __('Fecha de Nacimiento') }}</span>
+            <input wire:model.live="fechanacimiento" type="date" name="fechanacimiento"
+                class="form-control @error('fechanacimiento') is-invalid @enderror" id="fechanacimiento"
+                value="{{ old('fechanacimiento') }}" required autofocus aria-label="Fecha Nacimiento"
+                aria-describedby="lblFechaNacimiento">
 
-                @error('fechanacimiento')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
+            @error('fechanacimiento')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
+    </div>
 
 
 

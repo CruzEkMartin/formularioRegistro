@@ -3,12 +3,13 @@
 namespace App\Livewire\Formulario;
 
 use Livewire\Component;
+use Livewire\Attributes\Validate;
 
 class TipoRepresentacionComponent extends Component
 {
 
-
-    public $representacion ='';
+    #[Validate('required')]
+    public $representacion ='Personal';
 
     public function render()
     {

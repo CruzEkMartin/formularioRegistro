@@ -13,11 +13,11 @@ class SubirArchivoIniciativaComponent extends Component
 
       //tipo de archivo csv, máximo 100mb, para configurar el archivo temporal modificar config\livewire.php
       // #[Rule('required|file|mimetypes:text/csv,text/plain|max:102400')]
-      public $archivo;
+      public $documento;
       //public $ruta = "";
 
       //para reiniciar el nombre del archivo seleccionado cada que se cancela una subida o se elimina el archivo temporal
-      public $archivoId;
+      public $documentoId;
 
 
 

@@ -262,12 +262,12 @@
                         <div class="col-md-4">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="lblNombre">{{ __('Nombre(s)') }}</span>
-                                <input id="name" type="text"
-                                    class="form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name') }}" required autocomplete="name" autofocus
+                                <input id="nombre" type="text"
+                                    class="form-control @error('nombre') is-invalid @enderror" name="nombre"
+                                    value="{{ old('nombre') }}" required autocomplete="nombre" autofocus
                                     aria-label="Nombre(s)" aria-describedby="lblNombre">
 
-                                @error('name')
+                                @error('nombre')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -316,7 +316,7 @@
                     </div>
 
                     <!-- municipio, modalidad-->
-                    <div class="row">
+                    <div class="row mt-2">
 
                         <!--municipio-->
                         <div class="col-md-6">
@@ -363,7 +363,7 @@
 
 
 
-                    <!--fecha nacimiento, carta de autorizacion-->
+                    <!--telefono celular, fecha nacimiento, carta de autorizacion-->
                     <livewire:formulario.fecha-nacimiento-component>
 
 
@@ -372,7 +372,7 @@
 
 
                         <!--Discapacidades-->
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-md-12">
                                 <div class="input-group mb-3 align-items-center">
                                     <span class="input-group-text"
@@ -493,8 +493,10 @@
                         <livewire:formulario.propuesta-component>
 
 
+
+
                             <!--Subir aviso de privacidad documento-->
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="col-12">
                                     <div class="input-group mb-3 align-items-start">
                                         <span class="input-group-text"
@@ -518,8 +520,8 @@
                             <!--check aviso de privacidad-->
                             <div class="row">
                                 <div class="form-check">
-                                    <input class="form-check-input" name="chkAviso" type="checkbox" value="1"
-                                        {{ old('chkAviso') == '1' ? 'checked' : '' }} id="chkAviso" required>
+                                    <input class="form-check-input" name="chkAviso" type="checkbox" id="chkAviso"
+                                        required>
                                     <label class="form-check-label" for="chkAviso">
                                         Confirmo que he Leído y Acepto el &nbsp;<a
                                             href="https://www.opb.gob.mx/consulta/pdf/AVISO%20DE%20PRIVACIDAD%20INTEGRAL%20PARA%20CONSULTA%20A%20PERSONAS%20CON%20DISCAPCIDAD.pdf"
@@ -534,6 +536,7 @@
 
                                 <br>
                             </div>
+
 
 
                 </div> {{-- card-body --}}
@@ -580,11 +583,23 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
 
+
+
+
     <script>
         var Days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // index => month [0-11]
         var Months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DEC'];
 
+
+
         $(document).ready(function() {
+
+            $("[name='telefono'],[name='telefono']").attr({
+                pattern: '[1-9]{1}[0-9]{9}',
+                type: 'text',
+                title: '10 NUMEROS'
+            }); //validacion para numero de telefono
+
             var option = '<option value="">Día</option>';
             var selectedDay = "Dia";
             for (var i = 1; i <= Days[0]; i++) { //add option days
