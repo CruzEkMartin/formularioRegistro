@@ -1,6 +1,6 @@
 <div>
      <!--tema propuesta, tipo propuesta-->
-     <div class="row">
+     <div class="row mt-2">
         <div class="col-md-4">
             <div class="input-group mb-3">
                 <span class="input-group-text"

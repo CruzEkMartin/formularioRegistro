@@ -1,5 +1,5 @@
 <div>
-    <div class="row col-12">
+    <div class="row col-12 mt-2">
 
         <div class="input-group d-flex mb-3 ">
 
@@ -29,7 +29,7 @@
 
 
     @if ($representacion == 'Organizacion')
-        <div class="row col-12">
+        <div class="row col-12 mb-2">
             <div class=" input-group d-flex mb-3 ">
                 <span class="input-group-text" id="lblOrganizacion">{{ __('Nombre de Organizacion/Asociación') }}</span>
                 <input wire:model="organizacion" type="text" name="organizacion" id="organizacion"
