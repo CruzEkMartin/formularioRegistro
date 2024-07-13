@@ -6,7 +6,7 @@
                 <span class="input-group-text" id="lblCelPhone">Teléfono Celular</span>
                 <input id="telefono" type="number" maxlength="10"
                     class="form-control @error('telefono') is-invalid @enderror" name="telefono"
-                    value="{{ old('telefono') }}" autocomplete="telefono" aria-label="Teléfono Celular"
+                    value="{{ old('telefono') }}"  aria-label="Teléfono Celular"
                     aria-describedby="lblCelPhone">
 
                 @error('telefono')

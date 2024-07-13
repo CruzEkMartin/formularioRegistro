@@ -48,7 +48,7 @@ class FormularioController extends Controller
         $validate_array = Arr::add($validate_array, 'fechanacimiento', 'required');
         $validate_message = Arr::add($validate_message, 'fechanacimiento.required', 'Debe proporcionar la fecha de nacimiento!');
         if ($request->hasFile('carta')) {
-            $validate_array = Arr::add($validate_array, 'carta', 'required');
+            $validate_array = Arr::add($validate_array, 'carta', 'required|mimetypes:application/pdf,image/*|max:12288');
             $validate_message = Arr::add($validate_message, 'carta.required', 'Debe proporcionar la autorización!');
         }
         $validate_array = Arr::add($validate_array, 'representacion', 'required');
@@ -66,11 +66,11 @@ class FormularioController extends Controller
             $validate_message = Arr::add($validate_message, 'escrito.required', 'Detalle su propuesta!');
         }
         if ($request->hasFile('documento')) {
-            $validate_array = Arr::add($validate_array, 'documento', 'required');
+            $validate_array = Arr::add($validate_array, 'documento', 'required|mimetypes:application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf, image/*|max:12288');
             $validate_message = Arr::add($validate_message, 'documento.required', 'Debe proporcionar el documento de su propuesta!');
         }
         if ($request->hasFile('video')) {
-            $validate_array = Arr::add($validate_array, 'video', 'required');
+            $validate_array = Arr::add($validate_array, 'video', 'required|mimetypes:video/*|max:1048576');
             $validate_message = Arr::add($validate_message, 'video.required', 'Debe proporcionar el video de su propuesta!');
         }
         $validate_array = Arr::add($validate_array, 'chkAviso', 'required');
@@ -79,6 +79,18 @@ class FormularioController extends Controller
 
         $this->validate($request, $validate_array, $validate_message);
 
+        //obtenemos las discapacidades
+        $discapacidades=['discapacidad'];
+        $discapacidades= $request->get('discapacidad');
+        $strdiscapacidades = "";
+        if(!empty($discapacidades)){
+            if ($request->get('txtOtro')) {
+                $discapacidades = Arr::add($discapacidades,'discapacidad',$request->get('txtOtro'));
+            }
+           $strdiscapacidades = implode(",", $discapacidades );
+        }
+
+//dd($strdiscapacidades);
 
         //comienza guardado
         //inicia la transaccion
@@ -87,41 +99,34 @@ class FormularioController extends Controller
 
             //* Creamos un nuevo registro
             $registro = new Registro();
-            $registro->nombre = $request->get('');
-            $registro->apellido_paterno = $request->get('');
-            $registro->apellido_materno = $request->get('');
-            $registro->municipio = $request->get('');
-            $registro->modalidad = $request->get('');
-            $registro->telefono = $request->get('');
-            $registro->email = $request->get('');
-            $registro->fechanacimiento = $request->get('');
-            $registro->carta = $request->get('');
-            $registro->extension_carta = $request->get('');
-            $registro->tamanio_carta = $request->get('');
-            $registro->representacion = $request->get('');
-            $registro->organizacion = $request->get('');
-            $registro->discapacidad = $request->get('');
-            $registro->temaPropuesta = $request->get('');
-            $registro->tipoPropuesta = $request->get('');
-            $registro->escrito = $request->get('');
-            $registro->documento = $request->get('');
-            $registro->extension_documento = $request->get('');
-            $registro->tamanio_documento = $request->get('');
-            $registro->video = $request->get('');
-            $registro->extension_video = $request->get('');
-            $registro->tamanio_video = $request->get('');
+            $registro->nombre = $request->get('nombre');
+            $registro->apellido_paterno = $request->get('apellido_paterno');
+            $registro->apellido_materno = $request->get('apellido_materno');
+            $registro->municipio = "Othón P. Blanco";//$request->get('');
+            $registro->modalidad = "Virtual";//$request->get('');
+            $registro->telefono = $request->get('telefono');
+            $registro->email = ""; //$request->get('');
+            $registro->fechanacimiento = $request->get('fechanacimiento');
+            $registro->representacion = $request->get('representacion');
+            $registro->organizacion = $request->get('organizacion');
+            $registro->discapacidad = $strdiscapacidades ;
+            $registro->temaPropuesta = $request->get('temaPropuesta');
+            $registro->tipoPropuesta = $request->get('tipoPropuesta');
+            $registro->escrito = $request->get('escrito');
             $registro->save();
 
             $idRegistro = $registro::latest('id')->first(); //busca el id del ultimo registro entrada guardado
 
             //obtenemos y guardamos el folio
-            $longitud = 5 - strlen($idRegistro);
+            $longitud = 5 - strlen($idRegistro->id);
             $folio = '';
             for ($i = 0; $i < $longitud; $i++)
                 $folio .= 0;
-            $folio .= $idRegistro;
+            $folio .= $idRegistro->id;
 
             $folio = 'OPB-CON-DIS-' . $folio;
+
+            //dd($folio);
 
             $registroFolio = Registro::find($idRegistro["id"]);
             $registroFolio->folio =  $folio;
@@ -141,11 +146,10 @@ class FormularioController extends Controller
 
             if ($request->hasFile('carta')) {
                 $carta = $request->file('carta');
-                //$request->file('carta')->storeAs($directorio, $idContacto["id"] . '.' . $extension);
                 $cartaName = $folio . '_carta.' . $carta->guessExtension();
-                $ruta = $ruta . $cartaName;
+                $rutaCarta = $ruta . $cartaName;
 
-                copy($carta, $ruta);
+                copy($carta, $rutaCarta);
                 //actiualizamos la tabla con la ruta
                 $registroCarta = Registro::find($idRegistro["id"]);
                 $registroCarta->carta =  $cartaName;
@@ -156,11 +160,10 @@ class FormularioController extends Controller
 
             if ($request->hasFile('documento')) {
                 $documento = $request->file('documento');
-                //$request->file('documento')->storeAs($directorio, $idContacto["id"] . '.' . $extension);
                 $documentoName = $folio . '_documento.' . $documento->guessExtension();
-                $ruta = $ruta . $documentoName;
+                $rutaDocumento = $ruta . $documentoName;
 
-                copy($documento, $ruta);
+                copy($documento, $rutaDocumento);
                 //actiualizamos la tabla con la ruta
                 $registroDocumento = Registro::find($idRegistro["id"]);
                 $registroDocumento->documento =  $documentoName;
@@ -171,11 +174,10 @@ class FormularioController extends Controller
 
             if ($request->hasFile('video')) {
                 $video = $request->file('video');
-                //$request->file('carta')->storeAs($directorio, $idContacto["id"] . '.' . $extension);
                 $videoName = $folio . '_video.' . $video->guessExtension();
-                $ruta = $ruta . $videoName;
+                $rutaVideo = $ruta . $videoName;
 
-                copy($video, $ruta);
+                copy($video, $rutaVideo);
                 //actiualizamos la tabla con la ruta
                 $registroVideo = Registro::find($idRegistro["id"]);
                 $registroVideo->video =  $videoName;

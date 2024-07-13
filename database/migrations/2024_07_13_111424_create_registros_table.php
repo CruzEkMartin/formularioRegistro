@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
-            $table->string('folio')->nullable();
+            $table->string('folio',20)->nullable();
             $table->string('nombre');
             $table->string('apellido_paterno')->nullable();
             $table->string('apellido_materno')->nullable();

@@ -21,9 +21,9 @@ use App\Livewire\Formulario\PrincipalComponent;
 // });
 
 
-Route::get('/', [FormularioController::class, 'index'])->name('formulario.index');
-Route::post('/formulario/store', [FormularioController::class, 'store'])->name('formulario.store');
-Route::post('/formulario/logout', [FormularioController::class, 'logout'])->name('formulario.logout');
+ Route::get('/', [FormularioController::class, 'index'])->name('formulario.index');
+ Route::post('/formulario/store', [FormularioController::class, 'store'])->name('formulario.store');
+ Route::post('/formulario/logout', [FormularioController::class, 'logout'])->name('formulario.logout');
 
 
 //Route::get('/', PrincipalComponent::class)->name('formulario.principal');
