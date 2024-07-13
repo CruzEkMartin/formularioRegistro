@@ -518,8 +518,8 @@
                             <!--check aviso de privacidad-->
                             <div class="row">
                                 <div class="form-check">
-                                    <input class="form-check-input" name="chkAviso" type="checkbox" value="1"
-                                        {{ old('chkAviso') == '1' ? 'checked' : '' }} id="chkAviso" required>
+                                    <input class="form-check-input" name="chkAviso" type="checkbox"
+                                        id="chkAviso" required>
                                     <label class="form-check-label" for="chkAviso">
                                         Confirmo que he Leído y Acepto el &nbsp;<a
                                             href="https://www.opb.gob.mx/consulta/pdf/AVISO%20DE%20PRIVACIDAD%20INTEGRAL%20PARA%20CONSULTA%20A%20PERSONAS%20CON%20DISCAPCIDAD.pdf"
@@ -534,6 +534,7 @@
 
                                 <br>
                             </div>
+
 
 
                 </div> {{-- card-body --}}
@@ -580,9 +581,14 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
 
+
+
+
     <script>
         var Days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // index => month [0-11]
         var Months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+
 
         $(document).ready(function() {
             var option = '<option value="">Día</option>';

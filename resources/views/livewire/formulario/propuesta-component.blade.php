@@ -30,9 +30,9 @@
                 <select wire:model.live='tipoPropuesta' name="tipoPropuesta" id="tipoPropuesta"
                     class="form-control @error('tipoPropuesta') is-invalid @enderror" required>
                     <option value="">Seleccionar</option>
-                    <option value="1">Libre</option>
-                    <option value="2">Documento PDF o Docx</option>
-                    <option value="3">Video</option>
+                    <option value="Libre">Libre</option>
+                    <option value="Documento PDF o Docx">Documento PDF o Docx</option>
+                    <option value="Video">Video</option>
                 </select>
 
                 @error('tipoPropuesta')
@@ -45,7 +45,7 @@
     </div>
 
     <!--Propuesta Libre-->
-    @if ($idTipoPropuesta == 1)
+    @if ($idTipoPropuesta == 'Libre')
     <div class="row">
         <div class="col-12">
             <div class="input-group align-items-start mb-3">
@@ -66,7 +66,7 @@
 
 
     <!--Propuesta de iniciativa documento-->
-    @if ($idTipoPropuesta == 2)
+    @if ($idTipoPropuesta == 'Documento PDF o Docx')
     <div class="row">
         <div class="col-12">
             <livewire:formulario.subir-archivo-iniciativa-component />
@@ -76,7 +76,7 @@
 
 
     <!--Propuesta de iniciativa video-->
-    @if ($idTipoPropuesta == 3)
+    @if ($idTipoPropuesta == 'Video')
     <div class="row">
         <div class="col-12">
             <livewire:formulario.subir-video-iniciativa-component />

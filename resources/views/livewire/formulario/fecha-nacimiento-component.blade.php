@@ -51,7 +51,7 @@
 
 
     <!--Subir carta de autorizacion documento-->
-    <div class="row">
+    <div class="row" >
         @if ($esMenor)
             <livewire:formulario.subir-carta-autorizacion-component />
         @endif
