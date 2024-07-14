@@ -242,7 +242,7 @@
 
 
 
-        <form action="{{ route('formulario.store') }}" method="POST" class="was-validated"
+        <form id="uploadForm" action="{{ route('formulario.store') }}" method="POST" class="was-validated"
             enctype="multipart/form-data">
             @csrf
 
@@ -587,6 +587,35 @@
 
 
     <script>
+
+
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    var videoInput = document.getElementById('video');
+    var file = videoInput.files[0];
+
+    if (file.size > 500 * 1024 * 1024) { // 500MB
+        alert('El video debe ser menor de 500MB');
+        e.preventDefault();
+        return;
+    }
+
+    var video = document.createElement('video');
+    video.preload = 'metadata';
+
+    video.onloadedmetadata = function() {
+        window.URL.revokeObjectURL(video.src);
+        if (video.duration > 90) {
+            alert('El video debe tener una duración de menos de 90 segundos');
+            e.preventDefault();
+        } else {
+            document.getElementById('uploadForm').submit();
+        }
+    };
+
+    video.src = URL.createObjectURL(file);
+});
+
+
         var Days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // index => month [0-11]
         var Months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DEC'];
 
@@ -693,7 +722,7 @@
     <script>
         $(document).ready(function() {
 
-            @if (!session('scssmsg'))
+            @if (!session('scssmsg') || !session('errormsg') )
                 $('#modalVideo').modal('show')
 
                 var url = $("#videoRegistro").attr('src');

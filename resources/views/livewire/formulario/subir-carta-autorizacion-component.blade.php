@@ -7,7 +7,7 @@ x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="pr
             <span class="input-group-text" id="lblCarta">{{ __('Autorización Tutor (JPG, PDF)') }}</span>
             <input wire:model.live='carta' id="upload{{ $cartaId }}" name="carta" type="file"
                 class="form-control @error('carta') is-invalid @enderror"
-                accept="application/pdf, image/*"
+                accept="application/pdf, image/jpeg,image/png,image/svg+xml,image/webp"
                 required>
 
             @error('carta')

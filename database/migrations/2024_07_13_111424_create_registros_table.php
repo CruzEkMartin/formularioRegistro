@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('discapacidad')->nullable();
             $table->string('temaPropuesta')->nullable();
             $table->string('tipoPropuesta')->nullable();
-            $table->string('escrito')->nullable();
+            $table->text('escrito')->nullable();
             $table->string('documento',100)->nullable();
             $table->string('extension_documento',4)->nullable();
             $table->string('tamanio_documento',20)->nullable();

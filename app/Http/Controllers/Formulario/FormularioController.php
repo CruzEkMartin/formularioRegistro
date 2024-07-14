@@ -35,81 +35,92 @@ class FormularioController extends Controller
     {
         //dd($request->all());
 
-        //validamos
-        $validate_array = [];
-        $validate_message = [];
-
-        $validate_array = Arr::add($validate_array, 'nombre', 'required');
-        $validate_message = Arr::add($validate_message, 'nombre.required', 'Debe proporcionar el nombre!');
-        $validate_array = Arr::add($validate_array, 'apellido_paterno', 'required');
-        $validate_message = Arr::add($validate_message, 'apellido_paterno.required', 'Debe proporcionar el apellido paterno!');
-        $validate_array = Arr::add($validate_array, 'apellido_materno', 'required');
-        $validate_message = Arr::add($validate_message, 'apellido_materno.required', 'Debe proporcionar el apellido materno!');
-        $validate_array = Arr::add($validate_array, 'fechanacimiento', 'required');
-        $validate_message = Arr::add($validate_message, 'fechanacimiento.required', 'Debe proporcionar la fecha de nacimiento!');
-        if ($request->hasFile('carta')) {
-            $validate_array = Arr::add($validate_array, 'carta', 'required|mimetypes:application/pdf,image/*|max:12288');
-            $validate_message = Arr::add($validate_message, 'carta.required', 'Debe proporcionar la autorización!');
-        }
-        $validate_array = Arr::add($validate_array, 'representacion', 'required');
-        $validate_message = Arr::add($validate_message, 'representacion.required', 'Debe proporcionar el tipo de representación!');
-        if ($request->get('organizacion')) {
-            $validate_array = Arr::add($validate_array, 'organizacion', 'required');
-            $validate_message = Arr::add($validate_message, 'organizacion.required', 'Proporcione el nombre de la organización o asociación!');
-        }
-        $validate_array = Arr::add($validate_array, 'temaPropuesta', 'required');
-        $validate_message = Arr::add($validate_message, 'temaPropuesta.required', 'Debe seleccionar un tema!');
-        $validate_array = Arr::add($validate_array, 'tipoPropuesta', 'required');
-        $validate_message = Arr::add($validate_message, 'tipoPropuesta.required', 'Debe seleccionar el tipo de propuesta!');
-        if ($request->get('escrito')) {
-            $validate_array = Arr::add($validate_array, 'escrito', 'required');
-            $validate_message = Arr::add($validate_message, 'escrito.required', 'Detalle su propuesta!');
-        }
-        if ($request->hasFile('documento')) {
-            $validate_array = Arr::add($validate_array, 'documento', 'required|mimetypes:application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf, image/*|max:12288');
-            $validate_message = Arr::add($validate_message, 'documento.required', 'Debe proporcionar el documento de su propuesta!');
-        }
-        if ($request->hasFile('video')) {
-            $validate_array = Arr::add($validate_array, 'video', 'required|mimetypes:video/*|max:1048576');
-            $validate_message = Arr::add($validate_message, 'video.required', 'Debe proporcionar el video de su propuesta!');
-        }
-        $validate_array = Arr::add($validate_array, 'chkAviso', 'required');
-        $validate_message = Arr::add($validate_message, 'chkAviso.required', 'Debe leer y aceptar el Aviso de Provacidad!');
-
-
-        $this->validate($request, $validate_array, $validate_message);
-
-        //obtenemos las discapacidades
-        $discapacidades=['discapacidad'];
-        $discapacidades= $request->get('discapacidad');
-        $strdiscapacidades = "";
-        if(!empty($discapacidades)){
-            if ($request->get('txtOtro')) {
-                $discapacidades = Arr::add($discapacidades,'discapacidad',$request->get('txtOtro'));
-            }
-           $strdiscapacidades = implode(",", $discapacidades );
-        }
-
-//dd($strdiscapacidades);
-
-        //comienza guardado
-        //inicia la transaccion
         try {
             DB::beginTransaction();
+            //validamos
+            $validate_array = [];
+            $validate_message = [];
+
+            $validate_array = Arr::add($validate_array, 'nombre', 'required');
+            $validate_message = Arr::add($validate_message, 'nombre.required', 'Debe proporcionar el nombre!');
+            $validate_array = Arr::add($validate_array, 'apellido_paterno', 'required');
+            $validate_message = Arr::add($validate_message, 'apellido_paterno.required', 'Debe proporcionar el apellido paterno!');
+            $validate_array = Arr::add($validate_array, 'apellido_materno', 'required');
+            $validate_message = Arr::add($validate_message, 'apellido_materno.required', 'Debe proporcionar el apellido materno!');
+            $validate_array = Arr::add($validate_array, 'fechanacimiento', 'required');
+            $validate_message = Arr::add($validate_message, 'fechanacimiento.required', 'Debe proporcionar la fecha de nacimiento!');
+            if ($request->hasFile('carta')) {
+                $validate_array = Arr::add($validate_array, 'carta', 'required|file|mimetypes: application/pdf,image/jpeg,image/png,image/svg+xml,image/webp|max:12288');
+                $validate_message = Arr::add($validate_message, 'carta.required', 'Debe proporcionar la autorización!');
+                $validate_message = Arr::add($validate_message, 'carta.file', 'No es un archivo!');
+                $validate_message = Arr::add($validate_message, 'carta.mimetypes', 'El archivo no es del formato permitido!');
+                $validate_message = Arr::add($validate_message, 'carta.max', 'El archivo supera el tamaño permitido!');
+            }
+            $validate_array = Arr::add($validate_array, 'representacion', 'required');
+            $validate_message = Arr::add($validate_message, 'representacion.required', 'Debe proporcionar el tipo de representación!');
+            if ($request->get('organizacion')) {
+                $validate_array = Arr::add($validate_array, 'organizacion', 'required');
+                $validate_message = Arr::add($validate_message, 'organizacion.required', 'Proporcione el nombre de la organización o asociación!');
+            }
+            $validate_array = Arr::add($validate_array, 'temaPropuesta', 'required');
+            $validate_message = Arr::add($validate_message, 'temaPropuesta.required', 'Debe seleccionar un tema!');
+            $validate_array = Arr::add($validate_array, 'tipoPropuesta', 'required');
+            $validate_message = Arr::add($validate_message, 'tipoPropuesta.required', 'Debe seleccionar el tipo de propuesta!');
+            if ($request->get('escrito')) {
+                $validate_array = Arr::add($validate_array, 'escrito', 'required');
+                $validate_message = Arr::add($validate_message, 'escrito.required', 'Detalle su propuesta!');
+            }
+            if ($request->hasFile('documento')) {
+                $validate_array = Arr::add($validate_array, 'documento', 'required|file|mimetypes: application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,image/jpeg,image/png,image/svg+xml,image/webp|max:12288');
+                $validate_message = Arr::add($validate_message, 'documento.required', 'Debe proporcionar el documento de su propuesta!');
+                $validate_message = Arr::add($validate_message, 'documento.file', 'No es un archivo!');
+                $validate_message = Arr::add($validate_message, 'documento.mimetypes', 'El archivo no es del formato permitido!');
+                $validate_message = Arr::add($validate_message, 'documento.max', 'El archivo supera el tamaño permitido!');
+            }
+            if ($request->hasFile('video')) {
+                $validate_array = Arr::add($validate_array, 'video', 'required|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi|max:524288000');
+                $validate_message = Arr::add($validate_message, 'video.required', 'Debe proporcionar el video de su propuesta!');
+                $validate_message = Arr::add($validate_message, 'video.file', 'No es un archivo!');
+                $validate_message = Arr::add($validate_message, 'video.mimetypes', 'El archivo no es del formato permitido!');
+                $validate_message = Arr::add($validate_message, 'video.max', 'El archivo supera el tamaño permitido!');
+            }
+            $validate_array = Arr::add($validate_array, 'chkAviso', 'required');
+            $validate_message = Arr::add($validate_message, 'chkAviso.required', 'Debe leer y aceptar el Aviso de Provacidad!');
+
+
+            $this->validate($request, $validate_array, $validate_message);
+
+            //obtenemos las discapacidades
+            $discapacidades = ['discapacidad'];
+            $discapacidades = $request->get('discapacidad');
+            $strdiscapacidades = "";
+            if (!empty($discapacidades)) {
+                if ($request->get('txtOtro')) {
+                    $discapacidades = Arr::add($discapacidades, 'discapacidad', $request->get('txtOtro'));
+                }
+                $strdiscapacidades = implode(",", $discapacidades);
+            }
+
+            //dd($strdiscapacidades);
+
+            //comienza guardado
+            //inicia la transaccion
+            //try {
+            //  DB::beginTransaction();
 
             //* Creamos un nuevo registro
             $registro = new Registro();
             $registro->nombre = $request->get('nombre');
             $registro->apellido_paterno = $request->get('apellido_paterno');
             $registro->apellido_materno = $request->get('apellido_materno');
-            $registro->municipio = "Othón P. Blanco";//$request->get('');
-            $registro->modalidad = "Virtual";//$request->get('');
+            $registro->municipio = "Othón P. Blanco"; //$request->get('');
+            $registro->modalidad = "Virtual"; //$request->get('');
             $registro->telefono = $request->get('telefono');
             $registro->email = ""; //$request->get('');
             $registro->fechanacimiento = $request->get('fechanacimiento');
             $registro->representacion = $request->get('representacion');
             $registro->organizacion = $request->get('organizacion');
-            $registro->discapacidad = $strdiscapacidades ;
+            $registro->discapacidad = $strdiscapacidades;
             $registro->temaPropuesta = $request->get('temaPropuesta');
             $registro->tipoPropuesta = $request->get('tipoPropuesta');
             $registro->escrito = $request->get('escrito');
@@ -194,7 +205,9 @@ class FormularioController extends Controller
         } catch (\Exception $e) {
             //! en caso de error hacemos rollback y mandamos mensaje de error
             DB::rollBack();
-            return Redirect::back()->with('errormsg', 'Ha ocurrido un error al intentar crear el contacto, intente de nuevo.' . $e);
+
+            //dd($e);
+            return Redirect::back()->with('errormsg', 'Ha ocurrido un error al intentar crear el registro, intente de nuevo.');
         }
     }
 
