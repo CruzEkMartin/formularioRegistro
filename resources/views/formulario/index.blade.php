@@ -242,8 +242,8 @@
 
 
 
-        <form id="uploadForm" action="{{ route('formulario.store') }}" method="POST" class="was-validated"
-            enctype="multipart/form-data">
+        <form id="uploadForm" onsubmit="btnSubmit()" action="{{ route('formulario.store') }}" method="POST" class="was-validated"
+            enctype="multipart/form-data" >
             @csrf
 
             <div class="card">
@@ -541,9 +541,16 @@
 
                 </div> {{-- card-body --}}
 
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-success" value="Submit">Enviar
-                        formulario de registro</button>
+                <div class="card-footer d-flex align-items-center">
+                    <div class="col-12 col-md-3">
+                        <button type="submit" id="btn_Submit" class="btn btn-success" value="Submit">Enviar
+                            formulario de registro</button>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <span id=msgGuardado style="display: none" class="badge badge-primary ml-2">La información de registro se está enviando, espere por favor... </span>
+                    </div>
+
+
                 </div>
 
             </div> {{-- card --}}
@@ -587,41 +594,16 @@
 
 
     <script>
-
-
-document.getElementById('uploadForm').addEventListener('submit', function(e) {
-    var videoInput = document.getElementById('video');
-    var file = videoInput.files[0];
-
-    if (file.size > 500 * 1024 * 1024) { // 500MB
-        alert('El video debe ser menor de 500MB');
-        e.preventDefault();
-        return;
-    }
-
-    var video = document.createElement('video');
-    video.preload = 'metadata';
-
-    video.onloadedmetadata = function() {
-        window.URL.revokeObjectURL(video.src);
-        if (video.duration > 90) {
-            alert('El video debe tener una duración de menos de 90 segundos');
-            e.preventDefault();
-        } else {
-            document.getElementById('uploadForm').submit();
-        }
-    };
-
-    video.src = URL.createObjectURL(file);
-});
-
-
         var Days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // index => month [0-11]
         var Months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DEC'];
 
-
+        function btnSubmit() {
+            document.getElementById('msgGuardado').style.display = 'block';
+            document.getElementById('btn_Submit').disabled = true;
+        }
 
         $(document).ready(function() {
+
 
             $("[name='telefono'],[name='telefono']").attr({
                 pattern: '[1-9]{1}[0-9]{9}',
@@ -722,7 +704,7 @@ document.getElementById('uploadForm').addEventListener('submit', function(e) {
     <script>
         $(document).ready(function() {
 
-            @if (!session('scssmsg') || !session('errormsg') )
+            @if (!session('scssmsg') || !session('errormsg'))
                 $('#modalVideo').modal('show')
 
                 var url = $("#videoRegistro").attr('src');

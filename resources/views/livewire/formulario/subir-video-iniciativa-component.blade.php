@@ -6,7 +6,7 @@
         <div class="input-group mb-3">
             <span class="input-group-text" id="lblVideo">{{ __('Propuesta de Iniciativa (video máx. 1:30 min)') }}</span>
             <input wire:model.live='video' id="upload{{ $videoId }}" name="video" type="file"
-                class="form-control @error('video') is-invalid @enderror" accept="video/*" required>
+                class="form-control @error('video') is-invalid @enderror" accept="video/mp4,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi" required>
 
             {{-- @error('video')
                 <span class="invalid-feedback" role="alert">

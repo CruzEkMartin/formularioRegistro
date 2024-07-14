@@ -207,7 +207,7 @@ class FormularioController extends Controller
             DB::rollBack();
 
             //dd($e);
-            return Redirect::back()->with('errormsg', 'Ha ocurrido un error al intentar crear el registro, intente de nuevo.');
+            return Redirect::back()->with('errormsg', 'Ha ocurrido un error al intentar crear el registro, intente de nuevo. ' . $e);
         }
     }
 
