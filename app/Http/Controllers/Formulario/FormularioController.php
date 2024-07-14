@@ -50,7 +50,7 @@ class FormularioController extends Controller
             $validate_array = Arr::add($validate_array, 'fechanacimiento', 'required');
             $validate_message = Arr::add($validate_message, 'fechanacimiento.required', 'Debe proporcionar la fecha de nacimiento!');
             if ($request->hasFile('carta')) {
-                $validate_array = Arr::add($validate_array, 'carta', 'required|file|mimetypes: application/pdf,image/jpeg,image/png,image/svg+xml,image/webp|max:12288');
+                $validate_array = Arr::add($validate_array, 'carta', 'required|file|mimetypes: application/pdf,image/jpeg,image/png,image/svg+xml,image/webp|max:10000000');
                 $validate_message = Arr::add($validate_message, 'carta.required', 'Debe proporcionar la autorización!');
                 $validate_message = Arr::add($validate_message, 'carta.file', 'No es un archivo!');
                 $validate_message = Arr::add($validate_message, 'carta.mimetypes', 'El archivo no es del formato permitido!');
@@ -71,18 +71,18 @@ class FormularioController extends Controller
                 $validate_message = Arr::add($validate_message, 'escrito.required', 'Detalle su propuesta!');
             }
             if ($request->hasFile('documento')) {
-                $validate_array = Arr::add($validate_array, 'documento', 'required|file|mimetypes: application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,image/jpeg,image/png,image/svg+xml,image/webp|max:12288');
+                $validate_array = Arr::add($validate_array, 'documento', 'required|file|mimetypes: application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,image/jpeg,image/png,image/svg+xml,image/webp|max:10000000');
                 $validate_message = Arr::add($validate_message, 'documento.required', 'Debe proporcionar el documento de su propuesta!');
-                $validate_message = Arr::add($validate_message, 'documento.file', 'No es un archivo!');
-                $validate_message = Arr::add($validate_message, 'documento.mimetypes', 'El archivo no es del formato permitido!');
-                $validate_message = Arr::add($validate_message, 'documento.max', 'El archivo supera el tamaño permitido!');
+                $validate_message = Arr::add($validate_message, 'documento.file', 'No es un documeneto!');
+                $validate_message = Arr::add($validate_message, 'documento.mimetypes', 'El documento no es del formato permitido!');
+                $validate_message = Arr::add($validate_message, 'documento.max', 'El documento supera el tamaño permitido!');
             }
             if ($request->hasFile('video')) {
-                $validate_array = Arr::add($validate_array, 'video', 'required|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi|max:524288000');
+                $validate_array = Arr::add($validate_array, 'video', 'required|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi|max:10000000');
                 $validate_message = Arr::add($validate_message, 'video.required', 'Debe proporcionar el video de su propuesta!');
-                $validate_message = Arr::add($validate_message, 'video.file', 'No es un archivo!');
-                $validate_message = Arr::add($validate_message, 'video.mimetypes', 'El archivo no es del formato permitido!');
-                $validate_message = Arr::add($validate_message, 'video.max', 'El archivo supera el tamaño permitido!');
+                $validate_message = Arr::add($validate_message, 'video.file', 'No es un video!');
+                $validate_message = Arr::add($validate_message, 'video.mimetypes', 'El video no es del formato permitido!');
+                $validate_message = Arr::add($validate_message, 'video.max', 'El video supera el tamaño permitido!');
             }
             $validate_array = Arr::add($validate_array, 'chkAviso', 'required');
             $validate_message = Arr::add($validate_message, 'chkAviso.required', 'Debe leer y aceptar el Aviso de Provacidad!');
