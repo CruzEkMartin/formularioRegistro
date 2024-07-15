@@ -547,7 +547,7 @@
                             formulario de registro</button>
                     </div>
                     <div class="col-12 col-md-6">
-                        <span id=msgGuardado style="display: none" class="badge badge-primary ml-2">La información de registro se está enviando, espere por favor... </span>
+                        <span id=msgGuardado style="display: none" class="badge badge-primary ml-2">Cargando, espere... </span>
                     </div>
 
 
