@@ -67,11 +67,18 @@
 
 
     <!--Subir carta de autorizacion documento-->
-    <div class="row">
-        @if ($esMenor)
-            <livewire:formulario.subir-carta-autorizacion-component />
-        @endif
+    @if ($esMenor)
+    <div class="row ">
+        <label class="form-check-label font-italic pl-2">
+            **Descargar formato de &nbsp;<a
+                href="https://www.opb.gob.mx/consulta/pdf/CARTA%20AUTORIZACI%C3%93N%20CONSULTA%20A%20PERSONAS%20CON%20DISCAPACIDAD.pdf"
+                target="_blank">Carta de Autorización de Padre, Madre o Tutor.</a>
+        </label>
     </div>
+    <div class="row">
+            <livewire:formulario.subir-carta-autorizacion-component />
+    </div>
+    @endif
 
 
 
