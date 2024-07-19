@@ -374,15 +374,15 @@
                         <!--Discapacidades-->
                         <div class="row mt-2">
                             <div class="col-md-12">
-                                <div class="input-group mb-3 align-items-center">
+                                <div class="input-group mb-3 align-items-center justify-content-between">
                                     <span class="input-group-text"
                                         id="lblDiscapacidad">{{ __('Discapacidades') }}</span>
                                     <div class="form-check pl-2 mb-2">
                                         <input
                                             class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                            name="discapacidad[]" type="checkbox" id="Fisica" value="Fisica"
-                                            @if (in_array('Fisica', old('discapacidad', []))) checked @endif>
-                                        <label class="form-check-label" for="Fisica">Fisica</label>
+                                            name="discapacidad[]" type="checkbox" id="Motriz" value="Motriz"
+                                            @if (in_array('Motriz', old('discapacidad', []))) checked @endif>
+                                        <label class="form-check-label" for="Motriz">Motriz</label>
                                     </div>
 
                                     <div class="form-check pl-2 mb-2">
@@ -394,13 +394,13 @@
                                     </div>
 
 
-                                    <div class="form-check pl-2 mb-2">
+                                    {{-- <div class="form-check pl-2 mb-2">
                                         <input
                                             class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
                                             name="discapacidad[]" type="checkbox" id="Mental" value="Mental"
                                             @if (in_array('Mental', old('discapacidad', []))) checked @endif>
                                         <label class="form-check-label" for="Mental">Mental</label>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="form-check pl-2 mb-2">
                                         <input
