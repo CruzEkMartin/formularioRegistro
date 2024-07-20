@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-solid.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-regular.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-light.css">
+    <!-- fontawesome FULL -->
+    <link rel="stylesheet" href="{{ asset('css/fontawesome_pro_v6.4.2_css_all.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome_pro_v6.4.2_css_sharp-light.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome_pro_v6.4.2_css_sharp-regular.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome_pro_v6.4.2_css_sharp-solid.css') }}">
 
     <style>
         * {
@@ -242,8 +242,8 @@
 
 
 
-        <form id="uploadForm" onsubmit="btnSubmit()" action="{{ route('formulario.store') }}" method="POST" class="was-validated"
-            enctype="multipart/form-data" >
+        <form id="uploadForm" onsubmit="btnSubmit()" action="{{ route('formulario.store') }}" method="POST"
+            class="was-validated" enctype="multipart/form-data">
             @csrf
 
             <div class="card">
@@ -547,7 +547,8 @@
                             formulario de registro</button>
                     </div>
                     <div class="col-12 col-md-6">
-                        <span id=msgGuardado style="display: none" class="badge badge-primary ml-2">Cargando, espere... </span>
+                        <span id=msgGuardado style="display: none" class="badge badge-primary ml-2">Cargando,
+                            espere... </span>
                     </div>
 
 
@@ -705,7 +706,7 @@
         $(document).ready(function() {
 
             @if (!session('scssmsg') || !session('errormsg'))
-                $('#modalVideo').modal('show')
+                // $('#modalVideo').modal('show')
 
                 var url = $("#videoRegistro").attr('src');
                 $("#videoRegistro").attr('src', '');

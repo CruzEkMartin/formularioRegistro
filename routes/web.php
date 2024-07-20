@@ -1,9 +1,13 @@
 <?php
 
 use App\Livewire\Counter;
+use App\Livewire\Home\Inicio;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Formulario\FormularioController;
+
 use App\Livewire\Formulario\PrincipalComponent;
+use App\Http\Controllers\Formulario\FormularioController;
+use App\Livewire\Formulario\Registros;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +20,6 @@ use App\Livewire\Formulario\PrincipalComponent;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
  Route::get('/', [FormularioController::class, 'index'])->name('formulario.index');
@@ -27,3 +28,24 @@ use App\Livewire\Formulario\PrincipalComponent;
 
 
 //Route::get('/', PrincipalComponent::class)->name('formulario.principal');
+
+//Auth::routes();
+
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Auth::routes(['register' => false]);
+Route::get('password/reset', function () { return false; });
+
+
+Route::get('/home',  Inicio::class)->name('home')->middleware(['auth']);
+
+
+
+route::get('/registros', Registros::class)->name('registros')->middleware(['auth']);
+
+
+Auth::routes();
+
+
