@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <!-- fontawesome FULL -->
-    <link rel="stylesheet" href="{{ asset('css/fontawesome_pro_v6.4.2_css_all.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/fontawesome_pro_v6.4.2_css_sharp-light.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/fontawesome_pro_v6.4.2_css_sharp-regular.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/fontawesome_pro_v6.4.2_css_sharp-solid.css') }}">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-solid.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-regular.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-light.css">
 
     <style>
         * {
@@ -242,8 +242,8 @@
 
 
 
-        <form id="uploadForm" onsubmit="btnSubmit()" action="{{ route('formulario.store') }}" method="POST"
-            class="was-validated" enctype="multipart/form-data">
+        <form id="uploadForm" onsubmit="btnSubmit()" action="{{ route('formulario.store') }}" method="POST" class="was-validated"
+            enctype="multipart/form-data">
             @csrf
 
             <div class="card">
@@ -394,13 +394,7 @@
                                     </div>
 
 
-                                    {{-- <div class="form-check pl-2 mb-2">
-                                        <input
-                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                            name="discapacidad[]" type="checkbox" id="Mental" value="Mental"
-                                            @if (in_array('Mental', old('discapacidad', []))) checked @endif>
-                                        <label class="form-check-label" for="Mental">Mental</label>
-                                    </div> --}}
+
 
                                     <div class="form-check pl-2 mb-2">
                                         <input
@@ -459,26 +453,7 @@
 
 
 
-                                    {{-- <div class="form-check pl-2 mb-2">
-                                        <input
-                                            class="form-check-input form-control @error('discapacidad') is-invalid @enderror"
-                                            name="discapacidad[]" type="checkbox" id="Otro" value="Otro"
-                                            >
-                                            <label class="form-check-label" for="Otro">Otro</label>
-                                            <input
-                                            class="form-control form-check-label @error('discapacidad') is-invalid @enderror"
-                                            name="discapacidad[]" type="text" id="txtOtro" aria-describedby="Otro">
-                                    </div> --}}
 
-                                    {{--
-                                    <div class="input-group col-md-6 ml-5 mt-2 mb-2">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="Otro">Otro</span>
-                                        </div>
-                                        <input
-                                            class="form-control @error('discapacidad') is-invalid @enderror"
-                                            name="discapacidad[]" type="text" id="Otro" aria-describedby="Otro">
-                                    </div> --}}
 
                                     @error('discapacidad')
                                         <span class="invalid-feedback" role="alert">
@@ -541,15 +516,19 @@
 
                 </div> {{-- card-body --}}
 
-                <div class="card-footer d-flex align-items-center">
-                    <div class="col-12 col-md-3">
-                        <button type="submit" id="btn_Submit" class="btn btn-success" value="Submit">Enviar
-                            formulario de registro</button>
+                <div class="card-footer ">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <span id=msgGuardado style="display: none" class="badge badge-primary ml-2">Cargando, espere... </span>
+                        </div>
+
+                        <div class="col-12 ">
+                            <button type="submit" id="btn_Submit" class="btn btn-success" value="Submit">Enviar
+                                formulario de registro</button>
+                        </div>
+
                     </div>
-                    <div class="col-12 col-md-6">
-                        <span id=msgGuardado style="display: none" class="badge badge-primary ml-2">Cargando,
-                            espere... </span>
-                    </div>
+
 
 
                 </div>
@@ -602,6 +581,7 @@
             document.getElementById('msgGuardado').style.display = 'block';
             document.getElementById('btn_Submit').disabled = true;
         }
+
 
         $(document).ready(function() {
 
@@ -705,8 +685,8 @@
     <script>
         $(document).ready(function() {
 
-            @if (!session('scssmsg') || !session('errormsg'))
-                // $('#modalVideo').modal('show')
+            @if (!session('scssmsg') || !session('errormsg') )
+                //$('#modalVideo').modal('show')
 
                 var url = $("#videoRegistro").attr('src');
                 $("#videoRegistro").attr('src', '');

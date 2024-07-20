@@ -8,7 +8,7 @@
             <input wire:model.live='video' id="upload{{ $videoId }}" name="video" type="file"
                 class="form-control @error('video') is-invalid @enderror" accept="video/mp4,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi" required>
 
-            {{-- @error('video')
+                {{-- @error('video')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

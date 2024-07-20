@@ -7,7 +7,7 @@
             <span class="input-group-text" id="lblDocumento">{{ __('Propuesta de Iniciativa (JPG, PDF, Docx)') }}</span>
             <input wire:model.live='documento' id="upload{{ $documentoId }}" name="documento" type="file"
                 class="form-control @error('documento') is-invalid @enderror"
-                accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf, image/*"
+                accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf, image/jpeg,image/png,image/svg+xml,image/webp"
                 required>
 
             @error('documento')
