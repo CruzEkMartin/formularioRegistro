@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Livewire\Formulario\PrincipalComponent;
 use App\Http\Controllers\Formulario\FormularioController;
+use App\Http\Controllers\RegistrosController;
 use App\Livewire\Formulario\Registros;
 
 /*
@@ -44,7 +45,7 @@ Route::get('/home',  Inicio::class)->name('home')->middleware(['auth']);
 
 
 route::get('/registros', Registros::class)->name('registros')->middleware(['auth']);
-
+Route::get('/registros/carta/{row}', [RegistrosController::class, 'ver_carta'])->name('registros.carta');
 
 Auth::routes();
 
